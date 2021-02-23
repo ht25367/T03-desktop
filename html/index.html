@@ -1,19 +1,33 @@
 <html>
-    <head>
-        <title>eelテスト</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <h2>eelテスト</h2>
-        <script type="text/javascript" src="./eel.js"></script>
-        <script>
-            search.addEventListener('click', () => {
+	<head>
+		<title>eelテスト</title>
+		<link rel="stylesheet" href="./style.css">
+	</head>
 
-            })
+	<body>
+		<h2>eelテスト</h2>
+		<div>
+			CSVファイル名：
+			<input value="source.csv" id="file">
+		</div>
+		<div>
+			検索ワード：<input id="word" >
+			<input value="検索" type="button" id="search">
+		</div>
+		<div>
+			<!-- 判定結果のテキストBOX -->
+			<textarea id="search_log"></textarea>
+		</div>
+		<script type="text/javascript" src="./eel.js"></script>
+		<script>
+			search.addEventListener('click', () => {
+					eel.kimetsu_search(word.value,file.value)
+			})
 
-            eel.expose(view_log_js)
-            function view_log_js(text){
-            }
-        </script>
-    </body>
+			eel.expose(view_log_js)
+			function view_log_js(text){
+				search_log.value += text + "\n"
+			}
+		</script>
+	</body>
 </html>

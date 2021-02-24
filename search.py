@@ -8,14 +8,18 @@ def kimetsu_search(word,file_name):
 	source=list(df["name"])
 	
 	# 検索対象取得
+	if file_name =="":
+		eel.view_log_js("ファイル名が入力されていません")
+		return
+		
 	file_flg = os.path.isfile(file_name)
 	# CSVﾌｧｲﾙが無い場合、
 	if file_flg == False:
 		if os.path.splitext(file_name)[1] != ".csv" :
-			print("ファイル拡張子が正しくありません")
+			eel.view_log_js("ファイル拡張子が正しくありません")
 			return
 		else:
-			print(file_name + " ファイルがありません")
+			eel.view_log_js(file_name + " ファイルがありません")
 			file_flg = input("ファイルを作りますか？(y/n):")
 			if file_flg == "y":
 				# ファイル作成
@@ -36,12 +40,12 @@ def kimetsu_search(word,file_name):
 		add_flg=input("『{}』を追加登録しますか？(0:しない 1:する)　＞＞　".format(word))
 		if add_flg=="1":
 			source.append(word)
-			print( word + " が追加されました")
+			eel.view_log_js( word + " が追加されました")
 		elif add_flg=="0":
-			print(word + " は追加されませんでした")
+			eel.view_log_js(word + " は追加されませんでした")
 		else:
-			print("0 か 1 が入力されていません")
-			print(word + " は追加されませんでした")
+			eel.view_log_js("0 か 1 が入力されていません")
+			eel.view_log_js(word + " は追加されませんでした")
 
 	# CSV書き込み
 	df=pd.DataFrame(source,columns=["name"])
